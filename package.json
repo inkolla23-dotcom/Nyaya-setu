@@ -1,0 +1,14 @@
+{
+  "name": "nyaya-setu",
+  "version": "1.0.0",
+  "description": "Nyaya Setu – AI Legal Copilot",
+  "private": true,
+  "scripts": {
+    "install:all": "npm install && npm install --prefix backend && npm install --prefix frontend",
+    "dev:backend": "npm start --prefix backend",
+    "dev:frontend": "npm run dev --prefix frontend",
+    "build:frontend": "npm run build --prefix frontend",
+    "start:backend": "npm start --prefix backend",
+    "db:setup": "npm run db:setup --prefix backend"
+  }
+}

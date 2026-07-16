@@ -1,0 +1,21 @@
+# Render.com deployment config for Nyaya Setu backend
+# https://render.com/docs/yaml-spec
+services:
+  - type: web
+    name: nyaya-setu-backend
+    runtime: node
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 5000
+      # Set the following in the Render dashboard (do not hardcode secrets here):
+      # DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_NAME
+      # DB_SSL=true
+      # JWT_SECRET
+      # FRONTEND_URL (your Vercel frontend URL)
+      # GEMINI_API_KEY, GROQ_API_KEY
+      # AI_PROVIDER=gemini, AI_MODEL=gemini-2.5-flash

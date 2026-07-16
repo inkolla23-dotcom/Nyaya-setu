@@ -1,0 +1,58 @@
+# == Dependencies ==
+node_modules/
+.pnp
+.pnp.js
+
+# == Environment variables (NEVER commit secrets) ==
+.env
+.env.local
+.env.development
+.env.production
+.env.*.local
+
+# == Build outputs ==
+dist/
+build/
+out/
+.vite/
+
+# == Logs ==
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# == OS / Editor ==
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# == SSL / TLS Certificates & Keys ==
+*.pem
+*.key
+*.crt
+*.cer
+*.p12
+*.pfx
+certs/
+ssl/
+
+# == Uploads (temporary) ==
+uploads/tmp/
+uploads/temp/
+
+# == Coverage ==
+coverage/
+.nyc_output/
+
+# == TypeScript ==
+*.tsbuildinfo
+
+# == Misc ==
+.gemini/
+.agents/
