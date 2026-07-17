@@ -95,7 +95,10 @@ const mockSuperAdminUser: User = {
   languagePreference: "en"
 };
 
-const API_URL = '/api';
+const API_URL = import.meta.env.VITE_API_URL || '/api';
+
+console.log("AuthContext: VITE_API_URL =", import.meta.env.VITE_API_URL);
+console.log("AuthContext: API_URL =", API_URL);
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);

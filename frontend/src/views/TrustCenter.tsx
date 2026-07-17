@@ -3,6 +3,8 @@ import { useAuth } from '../context/AuthContext';
 import { useLanguage } from '../context/LanguageContext';
 import { ChevronLeft, ShieldCheck, AlertCircle, CheckCircle2, XCircle, FileText, User, ArrowRight, UserCheck, ShieldAlert } from 'lucide-react';
 
+const API_URL = import.meta.env.VITE_API_URL || '/api';
+
 interface TrustCenterProps {
   setView: (view: string) => void;
 }
@@ -26,7 +28,7 @@ export const TrustCenter: React.FC<TrustCenterProps> = ({ setView }) => {
   const loadVerifications = async () => {
     setLoading(true);
     try {
-      const response = await fetch('/api/admin/verifications', {
+      const response = await fetch(`${API_URL}/admin/verifications`, {
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`
@@ -63,7 +65,7 @@ export const TrustCenter: React.FC<TrustCenterProps> = ({ setView }) => {
     if (!selectedAdvocate) return;
     setSubmittingAction(true);
     try {
-      const response = await fetch('/api/admin/verify-action', {
+      const response = await fetch(`${API_URL}/admin/verify-action`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

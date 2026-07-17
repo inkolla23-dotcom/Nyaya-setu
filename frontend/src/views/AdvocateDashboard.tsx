@@ -5,6 +5,7 @@ import { useData } from '../context/DataContext';
 import { Plus, ClipboardList, Calendar, Clock, CheckCircle2, User, AlertCircle, FileText, Sparkles, ShieldAlert, Copy, Edit, BookOpen, Trash2, ToggleLeft, ToggleRight, X, Check } from 'lucide-react';
 
 const DEV_MEETING_MODE = true;
+const API_URL = import.meta.env.VITE_API_URL || '/api';
 
 interface AdvocateDashboardProps {
   setView: (view: string) => void;
@@ -281,7 +282,7 @@ export const AdvocateDashboard: React.FC<AdvocateDashboardProps> = ({ setView, s
       if (newGovId) payload.govId = newGovId;
       if (newPracticeCert) payload.practiceCertificate = newPracticeCert;
 
-      const response = await fetch('/api/advocates/profile', {
+      const response = await fetch(`${API_URL}/advocates/profile`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -294,7 +295,7 @@ export const AdvocateDashboard: React.FC<AdvocateDashboardProps> = ({ setView, s
         const data = await response.json();
         
         // Refresh AuthContext session
-        const meResponse = await fetch('/api/auth/me', {
+        const meResponse = await fetch(`${API_URL}/auth/me`, {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         if (meResponse.ok) {
@@ -359,7 +360,7 @@ export const AdvocateDashboard: React.FC<AdvocateDashboardProps> = ({ setView, s
 
   const handleAcceptAppointment = async (apptId: number) => {
     try {
-      const response = await fetch(`/api/appointments/${apptId}/accept`, {
+      const response = await fetch(`${API_URL}/appointments/${apptId}/accept`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -503,7 +504,7 @@ export const AdvocateDashboard: React.FC<AdvocateDashboardProps> = ({ setView, s
   const handleCompleteAppointment = async (apptId: number) => {
     if (!window.confirm("Mark this consultation as completed?")) return;
     try {
-      const response = await fetch(`/api/appointments/${apptId}/complete`, {
+      const response = await fetch(`${API_URL}/appointments/${apptId}/complete`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -582,7 +583,7 @@ export const AdvocateDashboard: React.FC<AdvocateDashboardProps> = ({ setView, s
         };
         updateAdvocateDetails(updatedDetails);
       } else {
-        const response = await fetch('/api/advocates/verify', {
+        const response = await fetch(`${API_URL}/advocates/verify`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

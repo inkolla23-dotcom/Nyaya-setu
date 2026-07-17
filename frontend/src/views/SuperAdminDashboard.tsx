@@ -4,6 +4,8 @@ import { useLanguage } from '../context/LanguageContext';
 import { useData } from '../context/DataContext';
 import { ChevronLeft, Users, ShieldAlert, BarChart3, Settings, Terminal, Activity, Trash2, ShieldCheck, Database } from 'lucide-react';
 
+const API_URL = import.meta.env.VITE_API_URL || '/api';
+
 interface SuperAdminDashboardProps {
   setView: (view: string) => void;
 }
@@ -34,7 +36,7 @@ export const SuperAdminDashboard: React.FC<SuperAdminDashboardProps> = ({ setVie
   const loadData = async () => {
     setLoading(true);
     try {
-      const response = await fetch('/api/admin/users', {
+      const response = await fetch(`${API_URL}/admin/users`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (response.ok) {
@@ -45,7 +47,7 @@ export const SuperAdminDashboard: React.FC<SuperAdminDashboardProps> = ({ setVie
       }
       setSelectedLogs(defaultMockLogs);
 
-      const auditRes = await fetch('/api/admin/audit-logs', {
+      const auditRes = await fetch(`${API_URL}/admin/audit-logs`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (auditRes.ok) {
@@ -53,7 +55,7 @@ export const SuperAdminDashboard: React.FC<SuperAdminDashboardProps> = ({ setVie
         setAuditLogs(auditData);
       }
 
-      const apptRes = await fetch('/api/appointments', {
+      const apptRes = await fetch(`${API_URL}/appointments`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (apptRes.ok) {
@@ -76,7 +78,7 @@ export const SuperAdminDashboard: React.FC<SuperAdminDashboardProps> = ({ setVie
   const handleDeleteUser = async (id: number) => {
     if (!window.confirm("Are you sure you want to remove this user from Nyaya Setu database?")) return;
     try {
-      const response = await fetch(`/api/admin/users/${id}`, {
+      const response = await fetch(`${API_URL}/admin/users/${id}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });

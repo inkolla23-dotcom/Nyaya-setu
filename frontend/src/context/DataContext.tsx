@@ -41,6 +41,9 @@ const DataContext = createContext<DataContextType | undefined>(undefined);
 
 const API_URL = import.meta.env.VITE_API_URL || '/api';
 
+console.log("DataContext: VITE_API_URL =", import.meta.env.VITE_API_URL);
+console.log("DataContext: API_URL =", API_URL);
+
 // MOCK LOCAL STORE SEEDS (for Demo Mode)
 const localCategories = [
   { id: 1, name: 'Family Law', description: 'Divorce, custody, alimony, and family property.' },

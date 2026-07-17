@@ -5,6 +5,8 @@ import { useData } from '../context/DataContext';
 import { useAuth } from '../context/AuthContext';
 import { Mic, Send, AlertTriangle, ShieldCheck, ChevronRight, HelpCircle, FileText, Users, Star } from 'lucide-react';
 
+const API_URL = import.meta.env.VITE_API_URL || '/api';
+
 interface AiCopilotProps {
   setView: (view: string) => void;
   initialSearchQuery: string;
@@ -238,7 +240,7 @@ export const AiCopilot: React.FC<AiCopilotProps> = ({
               } else {
                 try {
                   const savedToken = localStorage.getItem('nyaya_setu_token');
-                  await fetch('/api/ai/chat/clear', {
+                  await fetch(`${API_URL}/ai/chat/clear`, {
                     method: 'POST',
                     headers: {
                       'Content-Type': 'application/json',
